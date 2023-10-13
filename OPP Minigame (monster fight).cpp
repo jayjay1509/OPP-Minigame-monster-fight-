@@ -40,7 +40,13 @@ public:
 	Monster(int hp,int hpMax, int ad, int dp, int speed,int py, race r) :
 		Health_Points(hp), Health_Max(hpMax), Attack_Damage(ad), Defense_Points(dp), Speed(speed),Parry(py), Race(r) {}
 	void Display();
+	void ResetStats();
 };
+
+void Monster::ResetStats()
+{
+	Health_Points = Health_Max;
+}
 
 void Monster::Display()
 {
@@ -70,7 +76,7 @@ void heal(Monster* monster1)
 {
 	int Liferecovery;
 	Liferecovery = monster1->Health_Max - monster1->Health_Points ;
-	Liferecovery *= 0.01;
+	Liferecovery *= 0.2;
 	monster1->Health_Points += Liferecovery;
 	std::cout << "le monstre se heal \n";
 }
@@ -111,12 +117,12 @@ void actionmonster(Monster* monster1,Monster* monster2)
 
 		int a = random();
 		std::cout << RaceString(monster1->Race) << "\n";
-		if (a > 4)
+		if (a > 6)
 		{
 			attack(monster1, monster2);
 
 		}
-		else if (a >= 2)
+		else if (a >= 3)
 		{
 			Parry(monster1);
 		}
@@ -134,6 +140,7 @@ bool isdead(Monster* monster1)
 	{
 		return true;
 	}
+	return false;
 	
 }
 
@@ -149,77 +156,92 @@ int main()
 
 
 
-	Monster chuck(25,25, 15, 5,50, 0, orc);
-	Monster bob(40,40, 10, 2, 40,0, goblin);
-	Monster dobie(50,50, 20, 0, 20,0, troll);
+	Monster jayson(30,30, 25, 2,50, 0, orc);
+	Monster mishuu(35,35, 9, 10, 40,0, goblin);
+	Monster green(25,25, 15, 2, 20,0, troll);
+
 
 	Monster* monster1 = {0};
 	Monster* monster2 = {0};
 	switch (a)
 	{
 	case 1:
-		monster1 = &chuck;
+		monster1 = &jayson;
 		break;
 	case 2:
-		monster1 = &bob;
+		monster1 = &mishuu;
 		break;
 	case 3:
-		monster1 = &dobie;
+		monster1 = &green;
 		break;
 	}
 	switch (b)
 	{
 	case 1:
-		monster2 = &chuck;
+		monster2 = &jayson;
 		break;
 	case 2:
-		monster2 = &bob;
+		monster2 = &mishuu;
 		break;
 	case 3:
-		monster2 = &dobie;
+		monster2 = &green;
 		break;
 	}
 
 	monster1->Display();
 	monster2->Display();
-	int roundcount= 0;
-	do
+	int victoirmonster1 = 0;
+	int victoirmonster2 = 0;
+	for (int i = 0; i < 100; i++)
 	{
-		if (monster1->Speed>monster2->Speed)
+		int roundcount = 0;
+
+		do
 		{
-			actionmonster(monster1, monster2);
-			if (isdead(monster1))
+			if (monster1->Speed > monster2->Speed)
 			{
-				break;
+				actionmonster(monster1, monster2);
+				if (isdead(monster2) == true)
+				{
+					std::cout << "le monstre 1 est mort \n";
+					victoirmonster2++;
+					break;
+				}
+				actionmonster(monster2, monster1);
+				if (isdead(monster1) == true)
+				{
+					std::cout << "le monstre 2 est mort \n";
+					victoirmonster1++;
+					break;
+				}
 			}
-			actionmonster(monster2, monster1);
-			if (isdead(monster2))
+			if (monster1->Speed < monster2->Speed)
 			{
-				break;
+				actionmonster(monster2, monster1);
+				if (isdead(monster1) == true)
+				{
+					std::cout << "le monstre 1 est mort \n";
+					victoirmonster2++;
+					break;
+				}
+				actionmonster(monster1, monster2);
+				if (isdead(monster2) == true)
+				{
+					std::cout << "le monstre 2 est mort \n";
+					victoirmonster1++;
+					break;
+				}
 			}
-		}
-		if (monster1->Speed < monster2->Speed)
-		{
-			actionmonster(monster2, monster1);
-			if (isdead(monster1))
-			{
-				break;
-			}
-			actionmonster(monster1, monster2);
-			if (isdead(monster2))
-			{
-				std
-				break;
-			}
-		}
 
 
-		roundcount++;
-		std::cout << "nombre de round: " << roundcount << "\n";
+			roundcount++;
+			std::cout << "nombre de round: " << roundcount << "\n";
+		} while (true);
+		monster1->ResetStats();
+		monster2->ResetStats();
 	}
-	while (true);
-
-	bob.Display();
-	chuck.Display();
-
+	//mishuu.Display();
+	//jayson.Display();
+	std::cout << RaceString(monster1->Race) << " : " << victoirmonster2 << "\n";
+	std::cout << RaceString(monster2->Race) << " : " << victoirmonster1 << "\n";
 }

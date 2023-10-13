@@ -1,0 +1,15 @@
+﻿'OPP Minigame (monster fight).exe' (Win32) : Chargé 'J:\01_ECOLE\projet\OPP-Minigame-monster-fight-\x64\Debug\OPP Minigame (monster fight).exe'. Les symboles ont été chargés.
+'OPP Minigame (monster fight).exe' (Win32) : Chargé 'C:\Windows\System32\ntdll.dll'. 
+'OPP Minigame (monster fight).exe' (Win32) : Chargé 'C:\Windows\System32\kernel32.dll'. 
+'OPP Minigame (monster fight).exe' (Win32) : Chargé 'C:\Windows\System32\KernelBase.dll'. 
+'OPP Minigame (monster fight).exe' (Win32) : Chargé 'C:\Windows\System32\msvcp140d.dll'. 
+'OPP Minigame (monster fight).exe' (Win32) : Chargé 'C:\Windows\System32\vcruntime140d.dll'. 
+'OPP Minigame (monster fight).exe' (Win32) : Chargé 'C:\Windows\System32\vcruntime140_1d.dll'. 
+'OPP Minigame (monster fight).exe' (Win32) : Chargé 'C:\Windows\System32\ucrtbased.dll'. 
+Le thread 0xae9c s'est arrêté avec le code 0 (0x0).
+'OPP Minigame (monster fight).exe' (Win32) : Chargé 'C:\Windows\System32\kernel.appcore.dll'. 
+'OPP Minigame (monster fight).exe' (Win32) : Chargé 'C:\Windows\System32\msvcrt.dll'. 
+'OPP Minigame (monster fight).exe' (Win32) : Chargé 'C:\Windows\System32\rpcrt4.dll'. 
+Le thread 0xac0c s'est arrêté avec le code 0 (0x0).
+Le thread 0x9b58 s'est arrêté avec le code 0 (0x0).
+Le programme '[41008] OPP Minigame (monster fight).exe' s'est arrêté avec le code 0 (0x0).
