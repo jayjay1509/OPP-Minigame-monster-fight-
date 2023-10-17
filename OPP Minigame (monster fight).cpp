@@ -1,165 +1,42 @@
 #include <iostream>
-enum  race
-{
-	troll,
-	orc,
-	goblin,
-};
 
-std::string RaceString(race _race) //here we replace values ??with letters so that the cards are more visible
-{
-	switch (_race)
-	{
-	case troll:
-		return "troll";
-		break;
-	case orc:
-		return "orc";
-		break;
-	case goblin:
-		return "goblin";
-		break;
-	default:;
-		return "mec ta encore foire";
-	}
+#include "monster.h"
+#include "Race.h"
+#include "tools.h"
 
-
-}
-
-
-class Monster
-{
-public:
-	int Health_Points;
-	int Health_Max;
-	int Attack_Damage;
-	int Defense_Points;
-	int Speed;
-	int Parry;
-	race Race;
-	Monster(int hp,int hpMax, int ad, int dp, int speed,int py, race r) :
-		Health_Points(hp), Health_Max(hpMax), Attack_Damage(ad), Defense_Points(dp), Speed(speed),Parry(py), Race(r) {}
-	void Display();
-	void ResetStats();
-};
-
-void Monster::ResetStats()
-{
-	Health_Points = Health_Max;
-}
-
-void Monster::Display()
-{
-	std::cout << "NOMBRE DE vie:" << Health_Points << "\n";
-	std::cout << "NOMBRE D'attack:" << Attack_Damage << "\n";
-	std::cout << "NOMBRE De defence:" << Defense_Points << "\n";
-	std::cout << "NOMBRE DE speed:" << Speed << "\n";
-	std::cout << "Race:" << RaceString(Race) << "\n";
-}
-
-void Parry(Monster* monster1)
-{
-	monster1->Defense_Points += 2;
-	monster1->Parry += 1;
-	std::cout << "le monstre se buff\n";
-}
-
-
-void Parrylost(Monster* monster1)
-{
-	monster1->Defense_Points -= 2;
-	monster1->Parry -= 1;
-}
-
-
-void heal(Monster* monster1)
-{
-	int Liferecovery;
-	Liferecovery = monster1->Health_Max - monster1->Health_Points ;
-	Liferecovery *= 0.2;
-	monster1->Health_Points += Liferecovery;
-	std::cout << "le monstre se heal \n";
-}
-
-void attack(Monster* monster1, Monster* monster2)
-{
-	int dammage = 0;
-	
-
-	dammage = monster1->Attack_Damage - monster2->Defense_Points;
-	if (dammage <= 0)
-	{
-		std::cout  << "il ne prende pas de degat\n";
-		//monster2->Defense_Points -= 1;
-	}
-	else
-	{
-		monster2->Health_Points -= dammage;
-		std::cout << "le monstre a pris " <<dammage << " de degats\n";
-
-	}
-	
-}
-
-int random()
-{
-	int randomValue = rand() % 20;
-	return randomValue;
-}
-
-void actionmonster(Monster* monster1,Monster* monster2)
-{
-
-		if (monster1->Parry == 1)
-		{
-			Parrylost(monster1);
-		}
-
-		int a = random();
-		std::cout << RaceString(monster1->Race) << "\n";
-		if (a > 6)
-		{
-			attack(monster1, monster2);
-
-		}
-		else if (a >= 3)
-		{
-			Parry(monster1);
-		}
-		else
-		{
-			heal(monster1);
-		}
-
-	
-}
-
-bool isdead(Monster* monster1)
-{
-	if (monster1->Health_Points <= 0)
-	{
-		return true;
-	}
-	return false;
-	
-}
 
 int main()
 {
 	srand(time(0));
+	Monster jayson(30, 30, 25, 2, 50, 0, orc);
+	Monster mishuu(35, 35, 9, 10, 40, 0, goblin);
+	Monster green(25, 25, 15, 2, 20, 0, troll);
+
+	std::cout << "le Monstre 1 S'appelle jayson \n";
+	jayson.Display();
+	std::cout << "\n";
+	std::cout << "le Monstre 2 S'appelle mishuu \n";
+	mishuu.Display();
+	std::cout << "\n";
+	std::cout << "le Monstre 3 S'appelle green \n";
+	green.Display();
+	std::cout << "\n";
 	int a;
-	std::cout << "vous devez choisir le premier monstre \n";
-	std::cin >> a;
 	int b;
-	std::cout << "vous devez choisir le deuxsieme monstre \n";
-	std::cin >> b;
 
+	do 
+	{
+		std::cout << "vous devez choisir le premier monstre \n";
+		std::cin >> a;
+		std::cout << "vous devez choisir le deuxième monstre \n";
+		std::cin >> b;
 
+		if (a == b)
+		{
+			std::cout << "Vous ne pouvez pas choisir le meme monstre pour les deux cotes de la bataille. Réessayez.\n";
+		}
 
-	Monster jayson(30,30, 25, 2,50, 0, orc);
-	Monster mishuu(35,35, 9, 10, 40,0, goblin);
-	Monster green(25,25, 15, 2, 20,0, troll);
-
+	} while (a == b);
 
 	Monster* monster1 = {0};
 	Monster* monster2 = {0};
@@ -187,61 +64,81 @@ int main()
 		monster2 = &green;
 		break;
 	}
+	std::system("cls");
 
+	std::cout << "le Monstre 1 \n";
 	monster1->Display();
+	std::cout << "\n";
+
+	std::cout << "le Monstre 2 \n";
 	monster2->Display();
+	std::cout << "\n";
+
 	int victoirmonster1 = 0;
 	int victoirmonster2 = 0;
-	for (int i = 0; i < 100; i++)
-	{
-		int roundcount = 0;
 
+	for (int i = 0; i < 1; i++)
+	{
+		int roundcount = 1;
 		do
 		{
 			if (monster1->Speed > monster2->Speed)
 			{
+				std::cout << "Round : " << roundcount << "\n\n";
 				actionmonster(monster1, monster2);
+				roundcount++;
 				if (isdead(monster2) == true)
 				{
-					std::cout << "le monstre 1 est mort \n";
-					victoirmonster2++;
+					std::cout << "le monstre " << RaceString(monster2->Race) << " est mort \n";
+					victoirmonster1++;
 					break;
 				}
+				std::cout << "Round : " << roundcount << "\n\n";
 				actionmonster(monster2, monster1);
+				roundcount++;
 				if (isdead(monster1) == true)
 				{
-					std::cout << "le monstre 2 est mort \n";
-					victoirmonster1++;
+					std::cout << "le monstre " << RaceString(monster1->Race) << " est mort \n";
+					victoirmonster2++;
 					break;
 				}
 			}
 			if (monster1->Speed < monster2->Speed)
 			{
+				std::cout <<"Round : " << roundcount << "\n\n";
 				actionmonster(monster2, monster1);
+				roundcount++;
 				if (isdead(monster1) == true)
 				{
-					std::cout << "le monstre 1 est mort \n";
+					std::cout << "le monstre " << RaceString(monster1->Race) << " est mort \n";
 					victoirmonster2++;
 					break;
 				}
+				std::cout << "Round : " << roundcount << "\n\n";
 				actionmonster(monster1, monster2);
+				roundcount++;
 				if (isdead(monster2) == true)
 				{
-					std::cout << "le monstre 2 est mort \n";
+					std::cout << "le monstre " << RaceString(monster2->Race) << " est mort \n";
 					victoirmonster1++;
 					break;
 				}
 			}
 
-
-			roundcount++;
-			std::cout << "nombre de round: " << roundcount << "\n";
 		} while (true);
+
+		std::cout << "le Monstre 1 \n";
+		monster1->Display();
+		std::cout << "\n";
+
+		std::cout << "le Monstre 2 \n";
+		monster2->Display();
+		std::cout << "\n";
+
 		monster1->ResetStats();
 		monster2->ResetStats();
 	}
-	//mishuu.Display();
-	//jayson.Display();
+	
 	std::cout << RaceString(monster1->Race) << " : " << victoirmonster2 << "\n";
 	std::cout << RaceString(monster2->Race) << " : " << victoirmonster1 << "\n";
 }
