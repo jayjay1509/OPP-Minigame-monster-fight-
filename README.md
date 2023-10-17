@@ -47,24 +47,24 @@ The `Monster` class represents individual monsters in the game. It encapsulates 
 
 class Monster 
 
-    Constructor to initialize a monster with specific attributes
+Constructor to initialize a monster with specific attributes
     Monster(int hp, int hpMax, int ad, int dp, int speed, int py, race r)
 
-     Reset a monster's statistics to their initial values
+Reset a monster's statistics to their initial values
     void ResetStats()
 
-    // Display a monster's attributes
+ // Display a monster's attributes
     void Display();
 
-    // Other attributes, if any
+ // Other attributes, if any
     
-    int Health_Points;
-    int Health_Max;
-    int Attack_Damage;
-    int Defense_Points;
-    int Speed;
-    int Parry;
-    race Race
+int Health_Points;
+int Health_Max;
+int Attack_Damage;
+int Defense_Points;
+int Speed;
+int Parry;
+race Race
 
 
 ## Author
