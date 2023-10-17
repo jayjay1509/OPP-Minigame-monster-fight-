@@ -53,10 +53,10 @@ Constructor to initialize a monster with specific attributes
 Reset a monster's statistics to their initial values
     void ResetStats()
 
- // Display a monster's attributes
+ Display a monster's attributes
     void Display();
 
- // Other attributes, if any
+Other attributes, if any
     
 int Health_Points;
 int Health_Max;
