@@ -48,13 +48,13 @@ The `Monster` class represents individual monsters in the game. It encapsulates 
 ### `Monster` Class:
 
 - **Attributes:**
-  - Health
-  - Strength
-  - Defense
-  - Speed
-  - Damage
-  - Experience
-  - Race
+  int Health_Points;
+  int Health_Max;
+  int Attack_Damage;
+  int Defense_Points;
+  int Speed;
+  int Parry;
+  race Race;
 - **Methods:**
   - `Display()`: Displays the monster's attributes.
   - `ResetStats()`: Resets the monster's stats after a battle.
