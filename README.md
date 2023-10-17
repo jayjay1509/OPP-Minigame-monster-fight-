@@ -58,12 +58,18 @@ Reset a monster's statistics to their initial values
 
 Other attributes, if any
     
-int Health_Points;
-int Health_Max;
-int Attack_Damage;
-int Defense_Points;
-int Speed;
-int Parry;
+int Health_Points
+
+int Health_Max
+
+int Attack_Damage
+
+int Defense_Points
+
+int Speed
+
+int Parry
+
 race Race
 
 
