@@ -39,29 +39,34 @@ This is a simple text-based game in C++ where monsters battle each other. Player
 
 ## Class Structure
 
-### `Monster` Class:
+### `Monster` Class
 
-- **Attributes:**
-  - Health
-  - Strength
-  - Defense
-  - Speed
-  - Damage
-  - Experience
-  - Race
-- **Methods:**
-  - `Display()`: Displays the monster's attributes.
-  - `ResetStats()`: Resets the monster's stats after a battle.
+The `Monster` class represents individual monsters in the game. It encapsulates their attributes and provides methods to manipulate and display their information.
 
-### tools:
+#### Class Definition
 
-- **Methods:**
-  - `InitializeGame()`: Initializes the game, including monster creation and random seed.
-  - `DisplayMonsterInfo()`: Displays information about monsters.
-  - `UserMonsterSelection()`: Prompts the user to choose monsters and prevents the same monster selection.
-  - `ClearConsole()`: Clears the console screen.
-  - `BattleLoop()`: Manages the battle logic.
-  - `DisplayBattleResults()`: Displays the results of the battle.
+class Monster 
+{
+public:
+    Constructor to initialize a monster with specific attributes
+    Monster(int hp, int hpMax, int ad, int dp, int speed, int py, race r);
+
+     Reset a monster's statistics to their initial values
+    void ResetStats();
+
+    // Display a monster's attributes
+    void Display();
+
+    // Other attributes, if any
+    
+    int Health_Points;
+    int Health_Max;
+    int Attack_Damage;
+    int Defense_Points;
+    int Speed;
+    int Parry;
+    race Race;
+};
 
 
 ## Author
